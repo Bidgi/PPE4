@@ -92,9 +92,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PPE4 3\PPE4 3.csproj">
-      <Project>{65095AB3-C7BF-40D3-A9E1-AD9B4247D83E}</Project>
-      <Name>PPE4 3</Name>
+    <ProjectReference Include="..\PPE4 3\PPE4.csproj">
+      <Project>{7D643C8A-C850-45DB-9188-0FC6743537E5}</Project>
+      <Name>PPE4</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
