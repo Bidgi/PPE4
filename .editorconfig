@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Fichier de métadonnées 'C:\Users\raoul\source\repos\PPE4 3\PPE4 3\PPE4 3\bin\Debug\netstandard2.0\ref\PPE4 3.dll' introuvable
+dotnet_diagnostic.CS0006.severity = none

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PPE4_3.Vues.IdentificationVue"
+             BackgroundColor="white">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="20">
+            <Label Text="Nom :" TextColor="Black" FontSize="18" />
+            <Entry Text="{Binding Nom}" TextColor="Black" BackgroundColor="#ececee"/>
+            <Label Text="Mot de passe :" TextColor="Black" FontSize="18"/>
+            <Entry Text="{Binding Mdp}" TextColor="Black" IsPassword="True" BackgroundColor="#ececee"/>
+            <FlexLayout>
+                <Switch OnColor="Green" ThumbColor="#00c8ff" IsToggled="{Binding SwitchBool}"/>
+                <Label Text="Se souvenir de moi" TextColor="Black" FontSize="18" Margin="0,6,0,0" />
+            </FlexLayout>
+            <Button Text="Indentification" TextColor="Black" BackgroundColor="#00c8ff" Command="{Binding CommandeButtonLogIn}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

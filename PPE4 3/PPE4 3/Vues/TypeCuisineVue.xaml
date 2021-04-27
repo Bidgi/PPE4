@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PPE4_3.Vues.TypeCuisineVue"
+             BackgroundColor="white">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Catégories" TextColor="Black" FontSize="18" Margin="20,10"/>
+            <CollectionView ItemsSource="{Binding LesTypeCuisine}" SelectionMode="Single" SelectedItem="{Binding LeTypeCusine}">
+                <CollectionView.ItemsLayout >
+                    <GridItemsLayout Span="2" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Image  Source="{Binding Image}" Aspect="AspectFill" WidthRequest="150" HeightRequest="150" BackgroundColor="#00c8ff"/>
+                            <Label Text="{Binding Libelle}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="35" TextColor="Black" />
+                            <Label Text="{Binding Libelle}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="34" TextColor="White"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
