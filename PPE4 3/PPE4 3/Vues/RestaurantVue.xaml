@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PPE4_3.Vues.RestaurantVue"
+            xmlns:src="clr-namespace:PPE4.VueModeles"
              BackgroundColor="white">
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding LeRestaurant}">
-            <Grid VerticalOptions="Start" HeightRequest="110">
+        <StackLayout>
+            <Grid VerticalOptions="Start" HeightRequest="110" BindingContext="{Binding LeRestaurant}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="65"/>
                     <RowDefinition Height="45"/>
@@ -21,7 +22,7 @@
             </Grid>
             <ScrollView>
                 <StackLayout>
-                    <Grid>
+                    <Grid BindingContext="{Binding LeRestaurant}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>

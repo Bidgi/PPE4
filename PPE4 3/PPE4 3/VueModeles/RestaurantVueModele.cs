@@ -83,7 +83,18 @@ namespace PPE4_3.VueModeles
         /// <summary>
         /// permet de passer a la page suivante
         /// </summary>
-        private void ActionPageRestaurant() => App.Current.MainPage = new CommandeVue(LesPlatCommand, LeRestaurant, TotalPrixCommande);
+        private void ActionPageRestaurant()
+        {
+            try
+            {
+                if (LesPlatCommand.Count > 0) App.Current.MainPage = new CommandeVue(LesPlatCommand, LeRestaurant, TotalPrixCommande);
+                else App.Current.MainPage.DisplayAlert("Alerte", "Vous devez sélectionner un plat pour accéder au récapitulatif.", "OK");
+            }
+            catch 
+            { 
+                App.Current.MainPage.DisplayAlert("Alerte", "Vous devez sélectionner un plat pour accéder au récapitulatif.", "OK"); 
+            }
+        }
         #endregion
     }
 }
