@@ -6,7 +6,7 @@
              BackgroundColor="white">
     <ContentPage.Content>
         <StackLayout>
-            <Grid VerticalOptions="Start" HeightRequest="110" BindingContext="{Binding LeRestaurant}">
+            <Grid VerticalOptions="Start" HeightRequest="110">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="65"/>
                     <RowDefinition Height="45"/>
@@ -16,13 +16,13 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.RowSpan="2" Grid.ColumnSpan="3" Source="{Binding Image}" Aspect="AspectFill" HeightRequest="110"/>
-                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Nom}" TextColor="Black" FontSize="31" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
-                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Nom}" TextColor="white" FontSize="30" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
+                <Image Grid.RowSpan="2" Grid.ColumnSpan="3" Source="{Binding LeRestaurant.Image}" Aspect="AspectFill" HeightRequest="110"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LeRestaurant.Nom}" TextColor="Black" FontSize="31" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LeRestaurant.Nom}" TextColor="white" FontSize="30" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
             </Grid>
             <ScrollView>
                 <StackLayout>
-                    <Grid BindingContext="{Binding LeRestaurant}">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
@@ -34,12 +34,12 @@
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Text="Type de cuisines :" TextColor="Black" FontSize="16" Margin="15,8,0,0"/>
-                        <Label Grid.Row="1" Text="{Binding TypeCuisinefull}" TextColor="Black" FontSize="14" Margin="26,0,0,8"/>
+                        <Label Grid.Row="1" Text="{Binding LeRestaurant.TypeCuisinefull}" TextColor="Black" FontSize="14" Margin="26,0,0,8"/>
                         <Label Grid.Row="2" Text="Adresse :" TextColor="Black" FontSize="16" Margin="15,0,0,0"/>
-                        <Label Grid.Row="3" Text="{Binding Adressefull}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="3" Text="{Binding LeRestaurant.Adressefull}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
                         <Label Grid.Row="0" Grid.Column="1" Text="Contact :" TextColor="Black" FontSize="16" Margin="15,8,0,0"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Mail}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Telephone}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding LeRestaurant.Mail}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding LeRestaurant.Telephone}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
                     </Grid>
                     <Label Text="Menu :" TextColor="Black" FontSize="18" Margin="15,10,0,0"/>
                     <CollectionView ItemsSource="{Binding LesMenus}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Single" SelectedItem="{Binding LeMenuSelect}">
@@ -70,7 +70,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     <Label Text="Plat :" TextColor="Black" FontSize="18" Margin="15,10,0,0"/>
-                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Multiple" SelectedItem="{Binding LesPlatsSelect}">
+                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Multiple" SelectedItems="{Binding LesPlatsSelect}" SelectionChanged="{Binding collectionView_SelectionChanged}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Span="1" Orientation="Vertical" />
                         </CollectionView.ItemsLayout>
