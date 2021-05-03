@@ -43,10 +43,10 @@ namespace PPE4_3.VueModeles
         #endregion
 
         #region Methodes
-        public void ActionTypeCusine()
-        {
-            Device.BeginInvokeOnMainThread(() => { Application.Current.MainPage = new NavigationPage(new ListeRestaurantVue(LeTypeCusine)); });
-        }
+        /// <summary>
+        /// permet de passer a la page suivante
+        /// </summary>
+        private void ActionTypeCusine() => App.Current.MainPage = new ListeRestaurantVue(LeTypeCusine);
         #endregion
     }
 }

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+               xmlns:PPE4.Vues="clr-namespace:PPE4_3.Vues"
+               Visual="Material"
+               x:Class="PPE4.Vues.MainShell">
+    <ShellItem>
+        <ShellSection>
+            <ShellContent Title = "Type de Cuisine"/>
+        </ShellSection>
+    </ShellItem>
+    <ShellItem>
+        <ShellSection>
+            <ShellContent Title = "Liste de Restaurant"/>
+        </ShellSection>
+    </ShellItem>
+</Shell>

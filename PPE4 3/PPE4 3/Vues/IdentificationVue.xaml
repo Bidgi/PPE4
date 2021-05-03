@@ -4,16 +4,19 @@
              x:Class="PPE4_3.Vues.IdentificationVue"
              BackgroundColor="white">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Margin="20">
-            <Label Text="Nom :" TextColor="Black" FontSize="18" />
-            <Entry Text="{Binding Nom}" TextColor="Black" BackgroundColor="#ececee"/>
-            <Label Text="Mot de passe :" TextColor="Black" FontSize="18"/>
-            <Entry Text="{Binding Mdp}" TextColor="Black" IsPassword="True" BackgroundColor="#ececee"/>
-            <FlexLayout>
-                <Switch OnColor="Green" ThumbColor="#00c8ff" IsToggled="{Binding SwitchBool}"/>
-                <Label Text="Se souvenir de moi" TextColor="Black" FontSize="18" Margin="0,6,0,0" />
-            </FlexLayout>
-            <Button Text="Indentification" TextColor="Black" BackgroundColor="#00c8ff" Command="{Binding CommandeButtonLogIn}"/>
+        <StackLayout VerticalOptions="Center"  Margin="20">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            <StackLayout IsVisible="{Binding ReverseIsBusy}">
+                <Label Text="Nom :" TextColor="Black" FontSize="18" />
+                <Entry Text="{Binding Nom}" TextColor="Black" BackgroundColor="#ececee"/>
+                <Label Text="Mot de passe :" TextColor="Black" FontSize="18"/>
+                <Entry Text="{Binding Mdp}" TextColor="Black" IsPassword="True" BackgroundColor="#ececee"/>
+                <FlexLayout>
+                    <Switch OnColor="Green" ThumbColor="#00c8ff" IsToggled="{Binding SwitchBool}" VerticalOptions="Center"/>
+                    <Label Text="Se souvenir de moi" TextColor="Black" FontSize="18" VerticalOptions="Center" Margin="15,0,0,0"/>
+                </FlexLayout>
+                <Button Text="Indentification" TextColor="Black" BackgroundColor="#00c8ff" Command="{Binding CommandeButtonLogIn}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

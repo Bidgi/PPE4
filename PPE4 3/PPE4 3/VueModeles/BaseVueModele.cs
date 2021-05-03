@@ -9,12 +9,17 @@ namespace PPE4_3.VueModeles
     class BaseVueModele : INotifyPropertyChanged
     {
         bool isBusy = false;
+        bool reverseIsBusy = false;
         public bool IsBusy
         {
             get => isBusy;
             set => SetProperty(ref isBusy, value);
         }
-
+        public bool ReverseIsBusy
+        {
+            get => reverseIsBusy;
+            set => SetProperty(ref reverseIsBusy, value);
+        }
         string title = string.Empty;
         public string Title
         {

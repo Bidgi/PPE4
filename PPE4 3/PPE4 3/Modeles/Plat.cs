@@ -12,6 +12,7 @@ namespace PPE4_3.Modeles
         private string _libelle;
         private float _prix;
         private string _image;
+        private string _cateLibelle;
         private Categorie _laCategorie;
         private Restaurant _leRestaurants;
         #endregion
@@ -21,6 +22,7 @@ namespace PPE4_3.Modeles
         {
             Id = id;
             Libelle = libelle;
+            CateLibelle = laCategorie.Libelle;
             Prix = prix;
             LaCategorie = laCategorie;
             LeRestaurant = leRestaurants;
@@ -32,6 +34,7 @@ namespace PPE4_3.Modeles
         #region Getters-Setters
         public int Id { get => _id; set => _id = value; }
         public string Libelle { get => _libelle; set => _libelle = value; }
+        public string CateLibelle { get => _cateLibelle; set => _cateLibelle = value; }
         public float Prix { get => _prix; set => _prix = value; }
         internal Categorie LaCategorie { get => _laCategorie; set => _laCategorie = value; }
         internal Restaurant LeRestaurant { get => _leRestaurants; set => _leRestaurants = value; }

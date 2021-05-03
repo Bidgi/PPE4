@@ -20,13 +20,14 @@ namespace PPE4_3.VueModeles
         #region Constructeur
         public ListeRestaurantVueModele(TypeCuisine leTypeCuisine)
         {
+            NomTypeCuisine = string.Concat("Le type cuisine : ", leTypeCuisine.Libelle);
             LesRestaurants = new ObservableCollection<Restaurant>(leTypeCuisine.LesRestaurants);
-            CommandeButtonRestaurants = new Command(ActionRestaurants);
+            CommandeButtonRestaurants = new Command(ActionListeRestaurants);
         }
         public ListeRestaurantVueModele()
         {
             LesRestaurants = new ObservableCollection<Restaurant>(Restaurant.CollClasse);
-            CommandeButtonRestaurants = new Command(ActionRestaurants);
+            CommandeButtonRestaurants = new Command(ActionListeRestaurants);
         }
         #endregion
 
@@ -43,14 +44,17 @@ namespace PPE4_3.VueModeles
             set
             {
                 SetProperty(ref _leRestaurant, value);
-                this.ActionRestaurants();
+                this.ActionListeRestaurants();
             }
         }
         public string NomTypeCuisine { get => _nomTypeCuisine; set => _nomTypeCuisine = value; }
         #endregion
 
         #region Méthodes
-        public void ActionRestaurants() => Device.BeginInvokeOnMainThread(() => Application.Current.MainPage = new NavigationPage(new RestaurantVue(LeRestaurant)));
+        /// <summary>
+        /// permet de passer a la page suivante
+        /// </summary>
+        private void ActionListeRestaurants() => App.Current.MainPage = new RestaurantVue(LeRestaurant);
         #endregion
     }
 }

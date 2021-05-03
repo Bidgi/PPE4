@@ -20,5 +20,10 @@ namespace PPE4_3.Vues
             InitializeComponent();
             BindingContext = vueModele = new RestaurantVueModele(leRestaurants);
         }
+
+        private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+
+        }
     }
 }

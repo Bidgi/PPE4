@@ -20,6 +20,7 @@ namespace PPE4_3.Modeles
         private string _typeCuisinefull;
         private List<TypeCuisine> _lesTypesCuisines;
         private List<Plat> _lesPlats;
+        private List<Menu> _lesMenus;
         #endregion
 
         #region Constructeurs
@@ -35,11 +36,11 @@ namespace PPE4_3.Modeles
             _adressefull = string.Concat(ville, " - ", adresse);
             _lesTypesCuisines = lesTypesCuisines;
             _lesPlats = lesPlats;
+            _image = image;
             _typeCuisinefull = TypeCuisineFull(lesTypesCuisines);
             this.SetListeTypeCuisine();
             this.SetListePlat();
             if (!CollClasse.Exists(x => x.Id == id)) CollClasse.Add(this);
-            _image = image;
         }
         #endregion
 
@@ -53,6 +54,7 @@ namespace PPE4_3.Modeles
         public string Mail { get => _mail; set => _mail = value; }
         public List<TypeCuisine> LesTypesCuisines { get => _lesTypesCuisines; set => _lesTypesCuisines = value; }
         public List<Plat> LesPlats { get => _lesPlats; set => _lesPlats = value; }
+        public List<Menu> LesMenus { get => _lesMenus; set => _lesMenus = value; }
         public string Image { get => _image; set => _image = value; }
         public string Adressefull { get => _adressefull; set => _adressefull = value; }
         public string TypeCuisinefull { get => _typeCuisinefull; set => _typeCuisinefull = value; }
@@ -76,6 +78,10 @@ namespace PPE4_3.Modeles
                 else vs += lesTypeCuisines[i].Libelle;
             }
             return vs;
+        }
+        public void AddMenu(Menu leMenu)
+        {
+            this.LesMenus.Add(leMenu);
         }
         #endregion
     }

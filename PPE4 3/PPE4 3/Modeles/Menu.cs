@@ -10,19 +10,21 @@ namespace PPE4_3.Modeles
         public static List<Menu> CollClasse = new List<Menu>();
         private int _id;
         private string _libelle;
-        private float _tauxReduction;
         private string _image;
-        private List<Plat> _lesPlat;
+        private float _prisMenu;
+        private Restaurant _leRestaurant;
+        private List<Plat> _lesPlats;
         #endregion
 
         #region Constructeur
-        public Menu(int id, string libelle, float tauxReuction, List<Plat> lesPlat, string limage)
+        public Menu(int id, string libelle, List<Plat> lesPlats, string image)
         {
             Id = id;
             Libelle = libelle;
-            TauxReduction = tauxReuction;
-            LesPlat = lesPlat;
-            Image = limage;
+            LesPlats = lesPlats;
+            Image = image;
+            PrisMenu = TotalPrix(lesPlats);
+            if (!LeRestaurant.LesMenus.Exists(x => x.Id == id)) LeRestaurant.AddMenu(this);
             if (!CollClasse.Exists(x => x.Id == id)) CollClasse.Add(this);
         }
         #endregion
@@ -30,12 +32,23 @@ namespace PPE4_3.Modeles
         #region Getters-Setters
         public int Id { get => _id; set => _id = value; }
         public string Libelle { get => _libelle; set => _libelle = value; }
-        public float TauxReduction { get => _tauxReduction; set => _tauxReduction = value; }
-        internal List<Plat> LesPlat { get => _lesPlat; set => _lesPlat = value; }
+        internal List<Plat> LesPlats { get => _lesPlats; set => _lesPlats = value; }
         public string Image { get => _image; set => _image = value; }
+        public float PrisMenu { get => _prisMenu; set => _prisMenu = value; }
+        public Restaurant LeRestaurant { get => _leRestaurant; set => _leRestaurant = value; }
         #endregion
 
         #region Méthodes
+        public float TotalPrix(List<Plat> lesPlat)
+        {
+            float prix = 0;
+            foreach (Plat unPlat in lesPlat) prix += unPlat.Prix;
+            return prix;
+        }
+        public void SetRestaurant()
+        {
+
+        }
         #endregion
     }
 }

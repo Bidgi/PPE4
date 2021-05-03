@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PPE4_3.Vues.ListeRestaurantVue">
+             x:Class="PPE4_3.Vues.ListeRestaurantVue"
+             BackgroundColor="white">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout BackgroundColor="#F6C495" Margin="0" Padding="0">
-                <Label Text="{Binding NomTypeCuisine}" TextColor="Black" FontSize="22" Margin="20,0,0,5"/>
-            </StackLayout>
+            <Label Text="{Binding NomTypeCuisine}" TextColor="Black" FontSize="22" Margin="12,5,0,5"/>
             <Label Text="Restaurants :" TextColor="Black" FontSize="18" Margin="20,5"/>
             <CollectionView ItemsSource="{Binding LesRestaurants}" SelectionMode="Single" SelectedItem="{Binding LeRestaurant}">
                 <CollectionView.ItemsLayout>

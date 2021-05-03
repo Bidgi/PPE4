@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PPE4_3.Vues
+namespace PPE4.Vues
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainMenu : MasterDetailPage
+    public partial class MainShell : Shell
     {
-        public MainMenu()
+        public MainShell()
         {
             InitializeComponent();
-
         }
-
     }
 }
