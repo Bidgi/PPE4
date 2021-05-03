@@ -57,8 +57,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2.8*"/>
+                    <ColumnDefinition Width="1.7*"/>
                     <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
                 <Button Text="Recapitulatif" BackgroundColor="#00c8ff" FontSize="15" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Command="{Binding CommandeButtonCommande}"/>

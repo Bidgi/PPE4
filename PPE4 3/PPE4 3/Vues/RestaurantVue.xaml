@@ -16,8 +16,8 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.RowSpan="2" Grid.ColumnSpan="3" Source="{Binding Image}" Aspect="AspectFill" HeightRequest="110"/>
-                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Nom}" TextColor="Black" FontSize="31" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
-                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Nom}" TextColor="white" FontSize="30" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Nom}" TextColor="Black" FontSize="31" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Nom}" TextColor="white" FontSize="30" VerticalOptions="Start" HorizontalOptions="Center" Margin="15,0,0,0"/>
             </Grid>
             <ScrollView>
                 <StackLayout>
@@ -41,7 +41,7 @@
                         <Label Grid.Row="2" Grid.Column="1" Text="{Binding Telephone}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
                     </Grid>
                     <Label Text="Menu :" TextColor="Black" FontSize="18" Margin="15,10,0,0"/>
-                    <CollectionView ItemsSource="{Binding LesMenus}" ItemsUpdatingScrollMode="KeepScrollOffset">
+                    <CollectionView ItemsSource="{Binding LesMenus}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Single" SelectedItem="{Binding LeMenuSelect}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Span="1" Orientation="Vertical" />
                         </CollectionView.ItemsLayout>
@@ -64,15 +64,12 @@
                                     <Label Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Libelle}" VerticalOptions="Center" FontSize="18" TextColor="Black"/>
                                     <Label Grid.Column="4" Text="{Binding PrisMenu}" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End" Margin="0,0,10,0"/>
                                     <Label Grid.Column="4" Text="€" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End"/>
-                                    <Button Grid.Column="1" Grid.Row="2" Text="-" CornerRadius="15" BackgroundColor="#00c8ff" FontSize="18"/>
-                                    <Entry Grid.Column="2" Grid.Row="2" BackgroundColor="#ececee" TextColor="Black" Keyboard="Telephone"/>
-                                    <Button Grid.Column="3" Grid.Row="2" Text="+" CornerRadius="15" BackgroundColor="#00c8ff" FontSize="18"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     <Label Text="Plat :" TextColor="Black" FontSize="18" Margin="15,10,0,0"/>
-                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset">
+                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Multiple" SelectedItem="{Binding LesPlatsSelect}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Span="1" Orientation="Vertical" />
                         </CollectionView.ItemsLayout>
@@ -96,9 +93,6 @@
                                     <Label Grid.Column="4" Text="{Binding Prix}" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End" Margin="0,0,10,0"/>
                                     <Label Grid.Column="4" Text="€" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End"/>
                                     <Label Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Text="{Binding CateLibelle}" VerticalOptions="Start" FontSize="15" TextColor="Black" Margin="15,0,0,0"/>
-                                    <Button Grid.Column="1" Grid.Row="2" Text="-" CornerRadius="15" BackgroundColor="#00c8ff" FontSize="18"/>
-                                    <Entry Grid.Column="2" Grid.Row="2" BackgroundColor="#ececee" TextColor="Black" Keyboard="Telephone"/>
-                                    <Button Grid.Column="3" Grid.Row="2" Text="+" CornerRadius="15" BackgroundColor="#00c8ff" FontSize="18"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -111,8 +105,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2.8*"/>
+                    <ColumnDefinition Width="1.7*"/>
                     <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
                 <Button Text="Recapitulatif" BackgroundColor="#00c8ff" FontSize="15" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Command="{Binding CommandeButtonRestaurant}"/>
