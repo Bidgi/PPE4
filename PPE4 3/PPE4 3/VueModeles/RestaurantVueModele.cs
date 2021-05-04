@@ -33,6 +33,7 @@ namespace PPE4_3.VueModeles
             CommandeButtonRestaurant = new Command(ActionPageRestaurant);
             CommandLesPlatsSelect = new Command(ActionCommandLesPlatsSelect);
             LesPlatsSelect = new ObservableCollection<object>();
+            LesPlatCommand = new List<Plat>();
         }
         #endregion
 
@@ -99,8 +100,8 @@ namespace PPE4_3.VueModeles
         /// </summary>
         private void ActionCommandLesPlatsSelect()
         {
-            try { LesPlatsSelect.ToList().ForEach(delegate (Object unPlatSelect) { LesPlatCommand.AddRange(Plat.CollClasse.FindAll(x => x == unPlatSelect)); }); } catch { }
-            try { LesPlatCommand.AddRange(LeMenuSelect.LesPlats); } catch { }
+            foreach (Plat UnPlat in LesPlatsSelect.ToList()) LesPlatCommand.Add(UnPlat);
+            if(LeMenuSelect != null)LesPlatCommand.AddRange(LeMenuSelect.LesPlats);
             TotalPrixCommande = GetPrix(LesPlatCommand);
         }
         #endregion
