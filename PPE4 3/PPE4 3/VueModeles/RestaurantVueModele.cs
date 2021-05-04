@@ -99,18 +99,9 @@ namespace PPE4_3.VueModeles
         /// </summary>
         private void ActionCommandLesPlatsSelect()
         {
-            try { LesPlatCommand = LesPlatsSelect.ToList().ConvertAll(new Converter<object, Plat>(ObjectToPlat)); } catch { }
+            try { LesPlatsSelect.ToList().ForEach(delegate (Object unPlatSelect) { LesPlatCommand.AddRange(Plat.CollClasse.FindAll(x => x == unPlatSelect)); }); } catch { }
             try { LesPlatCommand.AddRange(LeMenuSelect.LesPlats); } catch { }
             TotalPrixCommande = GetPrix(LesPlatCommand);
-        }
-
-        /// <summary>
-        /// permet de convertir un objet en parametre en plat
-        /// </summary>
-        public static Plat ObjectToPlat(object unObjet)
-        {
-            foreach (Plat unPlat in Plat.CollClasse) if (unObjet.Equals(unPlat)) return unPlat;
-            return null;
         }
         #endregion
     }
