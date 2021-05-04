@@ -55,12 +55,18 @@ namespace PPE4.VueModeles
         /// </summary>
         public void ActionPageCommande() 
         {
-            if (Utilitaire.PostCommande(LesPlats, Emporter, Constantes.LUtilisateur).Result) 
-            { 
+            IsBusy = true;
+            if (Utilitaire.PostCommande(LesPlats, Emporter, Constantes.LUtilisateur).Result)
+            {
+                IsBusy = false;
                 App.Current.MainPage.DisplayAlert("Félisitation", "Votre commande a bien été prise en compte.", "OK");
                 App.Current.MainPage = new TypeCuisineVue();
             }
-            else App.Current.MainPage.DisplayAlert("Alerte", "Votre commande n'a pas pue été prise en compte. Veuille vérifié votre connection internet ou réessayer plus tard.", "OK");
+            else
+            {
+                IsBusy = false;
+                App.Current.MainPage.DisplayAlert("Alerte", "Votre commande n'a pas pue été prise en compte. Veuille vérifié votre connection internet ou réessayer plus tard.", "OK");
+            }
         }
         #endregion
     }

@@ -17,7 +17,7 @@ namespace PPE4_3.VueModeles
         private Restaurant _leRestaurant;
         private List<Plat> _lesPlats;
         private List<Modeles.Menu> _lesMenus;
-        private List<Plat> _lesPlatsSelect;
+        private ObservableCollection<Object> _lesPlatsSelect;
         private Modeles.Menu _leMenuSelect;
         private List<Plat> _lesPlatCommand;
         private float _totalPrixCommande;
@@ -31,23 +31,23 @@ namespace PPE4_3.VueModeles
             LesPlats = leRestaurant.LesPlats;
             LesMenus = leRestaurant.LesMenus;
             CommandeButtonRestaurant = new Command(ActionPageRestaurant);
+            CommandLesPlatsSelect = new Command(ActionCommandLesPlatsSelect);
+            LesPlatsSelect = new ObservableCollection<object>();
         }
         #endregion
 
         #region Getters setters
+        public ICommand CommandLesPlatsSelect { get; }
         public ICommand CommandeButtonRestaurant { get; }
         public Restaurant LeRestaurant { get => _leRestaurant; set => _leRestaurant = value; }
         public List<Plat> LesPlats { get => _lesPlats; set => _lesPlats = value; }
         public List<Modeles.Menu> LesMenus { get => _lesMenus; set => _lesMenus = value; }
-        public List<Plat> LesPlatsSelect
+        public ObservableCollection<Object> LesPlatsSelect
         {
             get => _lesPlatsSelect;
             set
             {
                 SetProperty(ref _lesPlatsSelect, value);
-                LeMenuSelect = null;
-                LesPlatCommand = LesPlatsSelect;
-                TotalPrixCommande = GetPrix(LesPlatsSelect);
             }
         }
         public Modeles.Menu LeMenuSelect
@@ -56,9 +56,7 @@ namespace PPE4_3.VueModeles
             set
             {
                 SetProperty(ref _leMenuSelect, value);
-                LesPlatsSelect.Clear();
-                LesPlatCommand = LeMenuSelect.LesPlats;
-                TotalPrixCommande = LeMenuSelect.PrisMenu;
+                ActionPageRestaurant();
             }
         }
         public List<Plat> LesPlatCommand { get => _lesPlatCommand; set => _lesPlatCommand = value; }
@@ -94,6 +92,25 @@ namespace PPE4_3.VueModeles
             { 
                 App.Current.MainPage.DisplayAlert("Alerte", "Vous devez sélectionner un plat pour accéder au récapitulatif.", "OK"); 
             }
+        }
+
+        /// <summary>
+        /// permet d'actualiser le prix
+        /// </summary>
+        private void ActionCommandLesPlatsSelect()
+        {
+            try { LesPlatCommand = LesPlatsSelect.ToList().ConvertAll(new Converter<object, Plat>(ObjectToPlat)); } catch { }
+            try { LesPlatCommand.AddRange(LeMenuSelect.LesPlats); } catch { }
+            TotalPrixCommande = GetPrix(LesPlatCommand);
+        }
+
+        /// <summary>
+        /// permet de convertir un objet en parametre en plat
+        /// </summary>
+        public static Plat ObjectToPlat(object unObjet)
+        {
+            foreach (Plat unPlat in Plat.CollClasse) if (unObjet.Equals(unPlat)) return unPlat;
+            return null;
         }
         #endregion
     }

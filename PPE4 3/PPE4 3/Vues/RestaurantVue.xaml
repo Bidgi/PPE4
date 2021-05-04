@@ -70,7 +70,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     <Label Text="Plat :" TextColor="Black" FontSize="18" Margin="15,10,0,0"/>
-                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Multiple" SelectedItems="{Binding LesPlatsSelect}" SelectionChanged="{Binding collectionView_SelectionChanged}">
+                    <CollectionView ItemsSource="{Binding LesPlats}" ItemsUpdatingScrollMode="KeepScrollOffset" SelectionMode="Multiple" SelectedItems="{Binding LesPlatsSelect}" SelectionChangedCommand="{Binding CommandLesPlatsSelect}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Span="1" Orientation="Vertical" />
                         </CollectionView.ItemsLayout>

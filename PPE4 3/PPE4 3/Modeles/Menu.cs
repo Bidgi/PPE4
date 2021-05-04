@@ -23,7 +23,9 @@ namespace PPE4_3.Modeles
             Libelle = libelle;
             LesPlats = lesPlats;
             Image = image;
-            PrisMenu = TotalPrix(lesPlats);
+            PrisMenu = TotalPrix(LesPlats);
+            LeRestaurant = this.LesPlats[0].LeRestaurant;
+            SetRestaurant(lesPlats, this);
             if (!LeRestaurant.LesMenus.Exists(x => x.Id == id)) LeRestaurant.AddMenu(this);
             if (!CollClasse.Exists(x => x.Id == id)) CollClasse.Add(this);
         }
@@ -45,9 +47,9 @@ namespace PPE4_3.Modeles
             foreach (Plat unPlat in lesPlat) prix += unPlat.Prix;
             return prix;
         }
-        public void SetRestaurant()
+        public void SetRestaurant(List<Plat> lesPlat, Menu unMenu)
         {
-
+            foreach (Restaurant unRestaurant in Restaurant.CollClasse) foreach (Plat unPlat in unRestaurant.LesPlats) if (lesPlat.Exists(x => x.Id == unPlat.Id)) unMenu.LeRestaurant = unRestaurant;
         }
         #endregion
     }

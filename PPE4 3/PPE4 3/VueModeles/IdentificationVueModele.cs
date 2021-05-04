@@ -114,7 +114,7 @@ namespace PPE4_3.VueModeles
                     App.Current.Properties["SwitchBool"] = false;
                 }
                 App.Current.SavePropertiesAsync();
-                App.Current.MainPage = new ListeRestaurantVue();
+                App.Current.MainPage = new TypeCuisineVue();
             }
             else App.Current.MainPage.DisplayAlert("Alerte", "Votre nom ou votre mot de passe est incorrect, veuillez réessayer.", "Réessayer");
         }
