@@ -37,6 +37,7 @@ namespace PPE4_3.Modeles
             _lesTypesCuisines = lesTypesCuisines;
             _lesPlats = lesPlats;
             _image = image;
+            _lesMenus = new List<Menu>();
             _typeCuisinefull = TypeCuisineFull(lesTypesCuisines);
             this.SetListeTypeCuisine();
             this.SetListePlat();
@@ -63,7 +64,7 @@ namespace PPE4_3.Modeles
         #region Methodes
         private void SetListeTypeCuisine()
         {
-            foreach (TypeCuisine unTypeCuisine in this.LesTypesCuisines) unTypeCuisine.LesRestaurants.Add(this);
+            foreach (TypeCuisine unTypeCuisine in TypeCuisine.CollClasse) if(this.LesTypesCuisines.Contains(unTypeCuisine)) unTypeCuisine.LesRestaurants.Add(this);
         }
         private void SetListePlat()
         {

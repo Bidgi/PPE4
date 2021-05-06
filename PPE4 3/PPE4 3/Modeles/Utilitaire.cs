@@ -24,7 +24,10 @@ namespace PPE4_3.Modeles
                 IRestResponse response = await client.ExecuteAsync(request);
                 JsonConvert.DeserializeObject<List<T>>(response.Content);
             }
-            catch { }
+            catch (Exception ex)
+            { 
+            
+            }
         }
 
         /*public async Task<bool> PostUtilisateur(string Param1, string Param2)
@@ -55,7 +58,7 @@ namespace PPE4_3.Modeles
         /// <summary>
         /// permet de poster la commande dans la base de donnée
         /// </summary>
-        public static async Task<bool> PostCommande(List<Plat> lesPlats, bool emporter, Utilisateur utilisateur)
+        public async Task<bool> PostCommande(List<Plat> lesPlats, bool emporter, Utilisateur utilisateur)
         {
             try
             {
@@ -72,10 +75,10 @@ namespace PPE4_3.Modeles
                 var Content = new StringContent(oJsonObject.ToString());
                 var response = await client.PostAsync(Constantes.BaseApiAddress + "api/PostCommande", Content);
                 var content = await response.Content.ReadAsStringAsync();
-                if (content.Contains("pasok")) return false;
-                else return true;
+                if (content.Contains("ok")) return true;
+                else return false;
             }
             catch { return false; }
-        }
+        } 
     }
 }

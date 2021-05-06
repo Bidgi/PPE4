@@ -18,7 +18,7 @@ namespace PPE4_3.VueModeles
         private List<Plat> _lesPlats;
         private List<Modeles.Menu> _lesMenus;
         private ObservableCollection<Object> _lesPlatsSelect;
-        private Modeles.Menu _leMenuSelect;
+        private ObservableCollection<Object> _lesMenusSelect;
         private List<Plat> _lesPlatCommand;
         private float _totalPrixCommande;
         #endregion
@@ -33,6 +33,7 @@ namespace PPE4_3.VueModeles
             CommandeButtonRestaurant = new Command(ActionPageRestaurant);
             CommandLesPlatsSelect = new Command(ActionCommandLesPlatsSelect);
             LesPlatsSelect = new ObservableCollection<object>();
+            LesMenusSelect = new ObservableCollection<Object>();
             LesPlatCommand = new List<Plat>();
         }
         #endregion
@@ -43,29 +44,10 @@ namespace PPE4_3.VueModeles
         public Restaurant LeRestaurant { get => _leRestaurant; set => _leRestaurant = value; }
         public List<Plat> LesPlats { get => _lesPlats; set => _lesPlats = value; }
         public List<Modeles.Menu> LesMenus { get => _lesMenus; set => _lesMenus = value; }
-        public ObservableCollection<Object> LesPlatsSelect
-        {
-            get => _lesPlatsSelect;
-            set
-            {
-                SetProperty(ref _lesPlatsSelect, value);
-            }
-        }
-        public Modeles.Menu LeMenuSelect
-        {
-            get => _leMenuSelect;
-            set
-            {
-                SetProperty(ref _leMenuSelect, value);
-                ActionPageRestaurant();
-            }
-        }
+        public ObservableCollection<Object> LesPlatsSelect { get => _lesPlatsSelect; set => SetProperty(ref _lesPlatsSelect, value); }
+        public ObservableCollection<Object> LesMenusSelect { get => _lesMenusSelect; set => SetProperty(ref _lesMenusSelect, value); }
         public List<Plat> LesPlatCommand { get => _lesPlatCommand; set => _lesPlatCommand = value; }
-        public float TotalPrixCommande
-        {
-            get { return _totalPrixCommande; }
-            set { SetProperty(ref _totalPrixCommande, value); }
-        }
+        public float TotalPrixCommande { get => _totalPrixCommande; set => SetProperty(ref _totalPrixCommande, value); }
         #endregion
 
         #region Methodes
@@ -100,8 +82,9 @@ namespace PPE4_3.VueModeles
         /// </summary>
         private void ActionCommandLesPlatsSelect()
         {
+            LesPlatCommand.Clear();
             foreach (Plat UnPlat in LesPlatsSelect.ToList()) LesPlatCommand.Add(UnPlat);
-            if(LeMenuSelect != null)LesPlatCommand.AddRange(LeMenuSelect.LesPlats);
+            foreach (Modeles.Menu UnMenu in LesMenusSelect.ToList()) LesPlatCommand.AddRange(UnMenu.LesPlats);
             TotalPrixCommande = GetPrix(LesPlatCommand);
         }
         #endregion

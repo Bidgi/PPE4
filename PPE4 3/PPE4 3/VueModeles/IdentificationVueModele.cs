@@ -23,6 +23,7 @@ namespace PPE4_3.VueModeles
         /// </summary>
         public IdentificationVueModele()
         {
+            IsBusy = true;
             GetListe();
             CommandeButtonLogIn = new Command(ActionPage);
             if (App.Current.Properties.ContainsKey("NOM")) Nom = App.Current.Properties["NOM"].ToString();
@@ -79,7 +80,6 @@ namespace PPE4_3.VueModeles
         /// </summary>
         private async Task GetListe()
         {
-            IsBusy = true;
             await Utilitaire.GetAllAsync<Utilisateur>("api/utilisateurs");
             await Utilitaire.GetAllAsync<Restaurant>("api/restaurants");
             await Utilitaire.GetAllAsync<Modeles.Menu>("api/menus");

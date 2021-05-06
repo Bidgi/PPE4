@@ -18,15 +18,18 @@ namespace PPE4.VueModeles
         private List<Plat> _lesPlats;
         private bool _emporter;
         private float _totalPrixCommande;
+        private readonly Utilitaire utilitaire = new Utilitaire();
         #endregion
 
         #region Constructeurs
         public CommandeVueModele(List<Plat> lesPlats, Restaurant leRestaurant, float prixtt)
         {
+            IsBusy = false;
+            ReverseIsBusy = true;
             LeRestaurant = leRestaurant;
             LesPlats = lesPlats;
             TotalPrixCommande = prixtt;
-            CommandeButtonCommande = new Command(ActionPageCommande);
+            CommandeButtonCommande = new Command(ActionButtonPageCommande);
         }
         #endregion
 
@@ -53,20 +56,23 @@ namespace PPE4.VueModeles
         /// <summary>
         /// permet de valider ou non la commande
         /// </summary>
-        public void ActionPageCommande() 
+        public void ActionButtonPageCommande()
         {
             IsBusy = true;
-            if (Utilitaire.PostCommande(LesPlats, Emporter, Constantes.LUtilisateur).Result)
+            ActionPageCommande();
+        }
+
+        public async Task ActionPageCommande()
+        {
+            ReverseIsBusy = false;
+            bool result = await utilitaire.PostCommande(LesPlats, Emporter, Constantes.LUtilisateur);
+            IsBusy = false;
+            if (result)
             {
-                IsBusy = false;
                 App.Current.MainPage.DisplayAlert("Félisitation", "Votre commande a bien été prise en compte.", "OK");
                 App.Current.MainPage = new TypeCuisineVue();
             }
-            else
-            {
-                IsBusy = false;
-                App.Current.MainPage.DisplayAlert("Alerte", "Votre commande n'a pas pue été prise en compte. Veuille vérifié votre connection internet ou réessayer plus tard.", "OK");
-            }
+            else App.Current.MainPage.DisplayAlert("Alerte", "Votre commande n'a pas pue été prise en compte. Veuille vérifié votre connection internet ou réessayer plus tard.", "OK");
         }
         #endregion
     }

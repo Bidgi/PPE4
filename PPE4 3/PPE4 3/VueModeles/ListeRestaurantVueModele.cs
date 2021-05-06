@@ -22,17 +22,14 @@ namespace PPE4_3.VueModeles
         {
             NomTypeCuisine = string.Concat("Le type cuisine : ", leTypeCuisine.Libelle);
             LesRestaurants = new ObservableCollection<Restaurant>(leTypeCuisine.LesRestaurants);
-            CommandeButtonRestaurants = new Command(ActionListeRestaurants);
         }
         public ListeRestaurantVueModele()
         {
             LesRestaurants = new ObservableCollection<Restaurant>(Restaurant.CollClasse);
-            CommandeButtonRestaurants = new Command(ActionListeRestaurants);
         }
         #endregion
 
         #region Getters-Setters
-        public ICommand CommandeButtonRestaurants { get; }
         public ObservableCollection<Restaurant> LesRestaurants
         {
             get => _lesRestaurants;

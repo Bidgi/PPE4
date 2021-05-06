@@ -1,77 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PPE4_3.Vues.CommandeVue">
+             x:Class="PPE4_3.Vues.CommandeVue"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
-            <FlexLayout>
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
-            </FlexLayout>
-            <Label Text="Récapitulatif" TextColor="Black" FontSize="20" Margin="10,5,0,0"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Text="Restaurants :" TextColor="Black" FontSize="16" Margin="16,8,0,0"/>
-                <Label Grid.Row="1" Text="{Binding LeRestaurant.Nom}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
-                <Label Grid.Row="2" Text="Adresse :" TextColor="Black" FontSize="16" Margin="16,0,0,0"/>
-                <Label Grid.Row="3" Text="{Binding LeRestaurant.Ville}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
-                <Label Grid.Row="4" Text="{Binding LeRestaurant.Adresse}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="Type de cuisines :" TextColor="Black" FontSize="16" Margin="0,8,0,0"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="{Binding LeRestaurant.TypeCuisinefull}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="Contact :" TextColor="Black" FontSize="16" Margin="0,0,0,0"/>
-                <Label Grid.Row="3" Grid.Column="1" Text="{Binding LeRestaurant.Mail}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
-                <Label Grid.Row="4" Grid.Column="1" Text="{Binding LeRestaurant.Telephone}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
-            </Grid>
-            <Label Text="Plat :" TextColor="Black" FontSize="18" Margin="15,20,0,0"/>
-            <CollectionView ItemsSource="{Binding LesPlats}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="1" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Libelle}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14" TextColor="Black" Margin="16,0,0,0"/>
-                            <Label Grid.Column="2" Text="{Binding Prix}" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End" Margin="0,0,10,0"/>
-                            <Label Grid.Column="2" Text="€" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Grid VerticalOptions="End">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2.8*"/>
-                    <ColumnDefinition Width="1.7*"/>
-                    <ColumnDefinition Width="1.5*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="A emporter ?" TextColor="Black" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Switch Grid.Column="2" OnColor="Green" ThumbColor="#00c8ff" IsToggled="{Binding Emporter}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Button Grid.Row="1" Text="Recapitulatif" BackgroundColor="#00c8ff" FontSize="15" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Command="{Binding CommandeButtonCommande}"/>
-                <Label Grid.Row="1" Grid.Column="2" Text="Total :" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,10,10"/>
-                <Label Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrixCommande}" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,20,10"/>
-                <Label Grid.Row="1" Grid.Column="3" Text="€" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,10"/>
-            </Grid>
-        </StackLayout>
+        <FlexLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <StackLayout>
+                <StackLayout IsVisible="{Binding ReverseIsBusy}">
+                    <Label Text="Récapitulatif" TextColor="Black" FontSize="20" Margin="10,5,0,0"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Text="Restaurants :" TextColor="Black" FontSize="16" Margin="16,8,0,0"/>
+                        <Label Grid.Row="1" Text="{Binding LeRestaurant.Nom}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="2" Text="Adresse :" TextColor="Black" FontSize="16" Margin="16,0,0,0"/>
+                        <Label Grid.Row="3" Text="{Binding LeRestaurant.Ville}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="4" Text="{Binding LeRestaurant.Adresse}" TextColor="Black" FontSize="14" Margin="26,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="Type de cuisines :" TextColor="Black" FontSize="16" Margin="0,8,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding LeRestaurant.TypeCuisinefull}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="Contact :" TextColor="Black" FontSize="16" Margin="0,0,0,0"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding LeRestaurant.Mail}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding LeRestaurant.Telephone}" TextColor="Black" FontSize="14" Margin="10,0,0,0"/>
+                    </Grid>
+                    <Label Text="Plat :" TextColor="Black" FontSize="18" Margin="15,20,0,0"/>
+                    <CollectionView ItemsSource="{Binding LesPlats}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Span="1" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Libelle}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14" TextColor="Black" Margin="16,0,0,0"/>
+                                    <Label Grid.Column="2" Text="{Binding Prix}" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End" Margin="0,0,10,0"/>
+                                    <Label Grid.Column="2" Text="€" VerticalOptions="Center" FontSize="15" TextColor="Black" HorizontalOptions="End"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Grid VerticalOptions="End">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="2.8*"/>
+                            <ColumnDefinition Width="1.7*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="A emporter ?" TextColor="Black" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Switch Grid.Column="2" OnColor="Green" ThumbColor="#00c8ff" IsToggled="{Binding Emporter}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Button Grid.Row="1" Text="Valider" BackgroundColor="Green" FontSize="15" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Command="{Binding CommandeButtonCommande}"/>
+                        <Label Grid.Row="1" Grid.Column="2" Text="Total :" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,10,10"/>
+                        <Label Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrixCommande}" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,20,10"/>
+                        <Label Grid.Row="1" Grid.Column="3" Text="€" FontSize="15" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,10"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

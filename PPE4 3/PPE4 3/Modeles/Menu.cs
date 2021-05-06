@@ -26,7 +26,7 @@ namespace PPE4_3.Modeles
             PrisMenu = TotalPrix(LesPlats);
             LeRestaurant = this.LesPlats[0].LeRestaurant;
             SetRestaurant(lesPlats, this);
-            if (!LeRestaurant.LesMenus.Exists(x => x.Id == id)) LeRestaurant.AddMenu(this);
+            if (!LeRestaurant.LesMenus.Exists(x => x.Id == this.Id)) LeRestaurant.AddMenu(this);
             if (!CollClasse.Exists(x => x.Id == id)) CollClasse.Add(this);
         }
         #endregion
