@@ -16,12 +16,9 @@ namespace PPE4_3.Modeles
         /// </summary>
         public static async Task GetAllAsync<T>(string paramUrl)
         {
-            var client = new RestClient(string.Concat(Constantes.BaseApiAddress, paramUrl));
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("cache-control", "no-cache");
             try
             {
-                IRestResponse response = await client.ExecuteAsync(request);
+                IRestResponse response = await new RestClient(string.Concat(Constantes.BaseApiAddress, paramUrl)).ExecuteAsync(new RestRequest(Method.GET).AddHeader("cache-control", "no-cache"));
                 JsonConvert.DeserializeObject<List<T>>(response.Content);
             }
             catch (Exception ex)
